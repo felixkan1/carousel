@@ -154,9 +154,6 @@ ul.pageNum li.selected{
     width:350px;
     height:250px; 
   }
-  .controls .noMobile{
-    display: none;
-  }
 }
 
 
