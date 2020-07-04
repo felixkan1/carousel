@@ -52,8 +52,8 @@ if(carouselWidth > 1200){
   current = document.getElementById(String(index));
   current.classList.add("selected");
 }
-
-  
+console.log("hi")
+;  
 })
 
 prev.addEventListener("click",()=>{
