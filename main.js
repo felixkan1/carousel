@@ -10,15 +10,34 @@ function elt(type, props, ...children) {
   }
   return dom;
 }
+function createli (){
+  let buttons = document.querySelector(".pageNum");
+  let indices = Math.ceil(items * length/carouselWidth);
+  for(let i = 0; i < indices; i++){
+    let li = elt("li",{id:i},);
+    buttons.appendChild(li);
+  }
+}
+
+
 
 //grab buttons
 const prev = document.querySelector(".prev");
 const next = document.querySelector(".next");
 const track = document.querySelector(".track");
-const card = document.querySelector(".card-container")
+const items = document.querySelectorAll(".card-container").length;
+const length = document.querySelector(".card-container").offsetWidth;
 let carouselWidth = document.querySelector(".carousel-container").offsetWidth;
+createli();
+
+
 let current = document.getElementById("0");
 current.classList.add("selected")
+
+
+
+
+
 
 let index = 0;
 let width = window.width;
