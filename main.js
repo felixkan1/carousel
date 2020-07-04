@@ -1,6 +1,4 @@
 //function used to created dom elements
-
-
 function elt(type, props, ...children) {
   let dom = document.createElement(type);
   if (props) Object.assign(dom, props);
@@ -10,6 +8,8 @@ function elt(type, props, ...children) {
   }
   return dom;
 }
+
+//dynamically create number of buttons depending number of items
 function createli (){
   let buttons = document.querySelector(".pageNum");
   let indices = Math.ceil(items * length/carouselWidth);
@@ -28,9 +28,8 @@ const track = document.querySelector(".track");
 const items = document.querySelectorAll(".card-container").length;
 const length = document.querySelector(".card-container").offsetWidth;
 let carouselWidth = document.querySelector(".carousel-container").offsetWidth;
+
 createli();
-
-
 let current = document.getElementById("0");
 current.classList.add("selected")
 
@@ -45,6 +44,11 @@ let width = window.width;
 window.addEventListener('resize',()=>{
   //if width is not changed, dont do anything
   if(carouselWidth == document.querySelector(".carousel-container").offsetWidth) return;
+  carouselWidth = document.querySelector(".carousel-container").offsetWidth;
+  //remove all lis and add it back in:
+  let ul = document.querySelector(".pageNum");
+  ul.innerHTML =""
+  createli();
   //need to recalucate index, go back to first index:
   index = 0;
   current.classList.remove("selected");
@@ -53,7 +57,9 @@ window.addEventListener('resize',()=>{
   track.style.transform =  `translateX(-${carouselWidth * index}px)`;
   prev.classList.remove("show");
   next.classList.remove("hide");
-  carouselWidth = document.querySelector(".carousel-container").offsetWidth;
+  
+
+ 
 
 })
 
@@ -70,12 +76,11 @@ next.addEventListener("click", ()=>{
     next.classList.add("hide");
   }
 
-  //on desktop, change buttons that are highlighted
-if(carouselWidth > 1200){
+ 
   current.classList.remove("selected");
   current = document.getElementById(String(index));
   current.classList.add("selected");
-}
+
 
 })
 
@@ -87,12 +92,12 @@ prev.addEventListener("click",()=>{
   if(index == 0){
     prev.classList.remove("show");
   }
-   //only if laptop
-  if(carouselWidth > 1200){
+
+
     current.classList.remove("selected");
     current = document.getElementById(String(index));
     current.classList.add("selected");
-  }
+  
 })
 
 //on click event arrow
