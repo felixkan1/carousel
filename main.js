@@ -1,7 +1,5 @@
 //function used to created dom elements
 
-console.log("hello world");
-
 
 function elt(type, props, ...children) {
   let dom = document.createElement(type);
@@ -26,8 +24,9 @@ let index = 0;
 let width = window.width;
 //resize event
 window.addEventListener('resize',()=>{
-  //need to recalucate index:
+  //if width is not changed, dont do anything
   if(carouselWidth == document.querySelector(".carousel-container").offsetWidth) return;
+  //need to recalucate index, go back to first index:
   index = 0;
   current.classList.remove("selected");
   current = document.getElementById(String(index));
@@ -51,13 +50,14 @@ next.addEventListener("click", ()=>{
   if(track.offsetWidth - index*carouselWidth < carouselWidth){
     next.classList.add("hide");
   }
+
+  //on desktop, change buttons that are highlighted
 if(carouselWidth > 1200){
   current.classList.remove("selected");
   current = document.getElementById(String(index));
   current.classList.add("selected");
 }
-console.log("hi")
-;  
+
 })
 
 prev.addEventListener("click",()=>{
@@ -74,8 +74,6 @@ prev.addEventListener("click",()=>{
     current = document.getElementById(String(index));
     current.classList.add("selected");
   }
-
-
 })
 
 //on click event arrow
@@ -84,21 +82,20 @@ document.querySelectorAll(".pageNum li").forEach(item =>{
   item.addEventListener("click",event =>{
     current.classList.remove("selected");
     current = event.target
-    console.log(current);
     event.target.classList.add("selected");
     index = event.target.id;
     console.log("index:",index);
     track.style.transform = `translateX(-${carouselWidth * index}px)`
     
-    if(index == 0){
+    if(index == 0){//first index
       next.classList.remove("hide");
       prev.classList.remove("show");
     }
-    if(index == 3){
+    if(index == 3){ //last index
       next.classList.add("hide");
       prev.classList.add("show")
     }
-    if(index != 0 && index!=3){
+    if(index != 0 && index!=3){ //not first or last
       prev.classList.add("show")
       next.classList.remove("hide");
     }
