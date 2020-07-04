@@ -1,4 +1,8 @@
 //function used to created dom elements
+
+console.log("hello world");
+
+
 function elt(type, props, ...children) {
   let dom = document.createElement(type);
   if (props) Object.assign(dom, props);
